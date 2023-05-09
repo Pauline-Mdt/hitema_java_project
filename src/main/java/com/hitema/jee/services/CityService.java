@@ -10,4 +10,6 @@ public interface CityService {
     City update(City city);
     void delete(Long id);
     List<City> readAll();
+    List<City> readAllByName(String str);
+    List<City> readAllCapital();
 }

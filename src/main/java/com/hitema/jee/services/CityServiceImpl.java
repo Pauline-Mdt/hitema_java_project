@@ -24,7 +24,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public City read(Long id) {
-        return repository.getReferenceById(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -34,11 +34,21 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public void delete(Long id) {
-        repository.deleteById(id);
+        repository.delete(read(id));
     }
 
     @Override
     public List<City> readAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<City> readAllByName(String str) {
+        return repository.readCitiesByCityContainingIgnoreCase(str);
+    }
+
+    @Override
+    public List<City> readAllCapital() {
+        return repository.readCitiesByCapitalIsTrue();
     }
 }

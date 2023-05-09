@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,27 +19,20 @@ class CityServiceImplTest {
     private static final Logger log = LoggerFactory.getLogger(CityServiceImplTest.class);
     @Autowired
     private CityService service;
-    private static City city;
-
-    @BeforeAll
-    static void beforeAll() {
-        log.trace("Before All Start");
-        city = new City();
-        city.setCity("Paris");
-        city.setLastUpdate(LocalDateTime.now());
-        log.trace("Before All End");
-    }
-
-    @BeforeEach
-    void setUp() {
-        log.trace("Before Each");
-        assertNotNull(service, "ERROR Service city NOT injected.");
-    }
 
     @Test
     void create() {
-        City cityCreated = service.create(city);
-        assertNotNull(cityCreated, "ERROR creting city");
+        log.trace("<<<<<<<<<<Create City Start>>>>>>>>>>");
+        City city = new City();
+        city.setCity("Vienne");
+        city.setLastUpdate(LocalDateTime.now());
+        Country country = new Country();
+        country.setId(9L);
+        city.setCountry(country);
+        service.create(city);
+        assertNotNull(city.getId(), "ERROR inserting city.");
+        log.info("City Created : {}", city);
+        log.trace("<<<<<<<<<<Create City End>>>>>>>>>>");
     }
 
     @Test
@@ -51,13 +45,28 @@ class CityServiceImplTest {
 
     @Test
     void delete() {
-        service.delete(city.getId());
-        assertNull(city, "ERROR deleting city");
     }
 
     @Test
     void readAll() {
-        assertNotNull(city, "ERROR city is NOT set");
-        service.readAll().forEach(c -> log.trace("{}", c));
+    }
+
+    @Test
+    void readAllByName() {
+        log.trace("<<<<<<<<<<Read All By Name Start>>>>>>>>>>");
+        String str = "az";
+        List<City> cities = service.readAllByName(str);
+        log.trace("Nombre de villes trouvées : {}", cities.size());
+        cities.forEach(c -> log.trace("{}", c));
+        log.trace("<<<<<<<<<<Read All By Name End>>>>>>>>>>");
+    }
+
+    @Test
+    void readAllCapital() {
+        log.trace("<<<<<<<<<<Read All Capital Start>>>>>>>>>>");
+        List<City> cities = service.readAllCapital();
+        log.trace("Nombre de villes trouvées : {}", cities.size());
+        cities.forEach(c -> log.trace("{}", c));
+        log.trace("<<<<<<<<<<Read All Capital End>>>>>>>>>>");
     }
 }

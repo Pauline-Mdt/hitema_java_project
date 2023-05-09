@@ -22,6 +22,8 @@ public class City {
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
+    private Boolean capital;
+
     public Long getId() {
         return id;
     }
@@ -52,6 +54,14 @@ public class City {
 
     public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public Boolean getCapital() {
+        return capital;
+    }
+
+    public void setCapital(Boolean capital) {
+        this.capital = capital;
     }
 
     @Override
