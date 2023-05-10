@@ -18,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CityServiceImplTest {
     private static final Logger log = LoggerFactory.getLogger(CityServiceImplTest.class);
     @Autowired
-    private CityService service;
+    private CityService cityService;
+    private CountryService countryService;
 
     @Test
     void create() {
@@ -29,7 +30,7 @@ class CityServiceImplTest {
         Country country = new Country();
         country.setId(9L);
         city.setCountry(country);
-        service.create(city);
+        cityService.create(city);
         assertNotNull(city.getId(), "ERROR inserting city.");
         log.info("City Created : {}", city);
         log.trace("<<<<<<<<<<Create City End>>>>>>>>>>");
@@ -55,17 +56,17 @@ class CityServiceImplTest {
     void readAllByName() {
         log.trace("<<<<<<<<<<Read All By Name Start>>>>>>>>>>");
         String str = "az";
-        List<City> cities = service.readAllByName(str);
+        List<City> cities = cityService.readAllByName(str);
         log.trace("Nombre de villes trouvées : {}", cities.size());
         cities.forEach(c -> log.trace("{}", c));
         log.trace("<<<<<<<<<<Read All By Name End>>>>>>>>>>");
     }
 
     @Test
-    void readAllCapital() {
+    void readAllCapitals() {
         log.trace("<<<<<<<<<<Read All Capital Start>>>>>>>>>>");
-        List<City> cities = service.readAllCapital();
-        log.trace("Nombre de villes trouvées : {}", cities.size());
+        List<City> cities = cityService.readAllCapital();
+        log.trace("Nombre de capitales : {}", cities.size());
         cities.forEach(c -> log.trace("{}", c));
         log.trace("<<<<<<<<<<Read All Capital End>>>>>>>>>>");
     }
