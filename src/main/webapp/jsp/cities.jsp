@@ -29,13 +29,14 @@
 <div class="w3-container">
     <h2 style="text-align: center">Sakila - cities</h2>
     <br>
-    <button onclick="<c:url value="/" />" >Retour</button>
-    <button onclick="<c:url value="/countries" />" >Tous les pays</button>
+    <a href="<c:url value="/" />" class="w3-button">Retour</a>
+    <a href="<c:url value="/countries" />" class="w3-button">Pays</a>
 
     <table id="citiesTable" class="w3-centered w3-table-all">
         <thead>
         <tr class="w3-light-grey">
             <th>Id</th>
+            <th>City</th>
             <th>Country</th>
         </tr>
         </thead>
@@ -44,6 +45,7 @@
             <tr>
                 <th scope="row">${elem.id}</th>
                 <td>${elem.city}</td>
+                <td>${elem.country.country}</td>
             </tr>
         </c:forEach>
         </tbody>

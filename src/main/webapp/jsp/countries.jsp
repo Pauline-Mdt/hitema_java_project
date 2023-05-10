@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 
 <%--<%@ taglib prefix="c" uri="jakarta.tags.core" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 	CSS (w3css) de la Page -->
-    <link rel="stylesheet" href="<c:url value="css/w3.css" />" />
+    <link rel="stylesheet" href="<c:url value="css/w3.css" />"/>
 
     <title>Countries JSP</title>
 
@@ -29,24 +29,28 @@
 <div class="w3-container">
     <h2 style="text-align: center">Sakila - countries</h2>
     <br>
-    <button onclick="<c:url value="/" />" >Retour</button>
+    <a href="<c:url value="/" />" class="w3-button">Retour</a>
+    <a href="<c:url value="/cities" />" class="w3-button">Villes</a>
 
-    <table id="countriesTable" class="w3-centered w3-table-all">
-        <thead>
-        <tr class="w3-light-grey">
-            <th>Id</th>
-            <th>Country</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${countries}" var="elem">
-            <tr>
-                <th scope="row">${elem.id}</th>
-                <td>${elem.country}</td>
+    <div class="w3-container w3-center">
+        <a href="<c:url value="/countries/new" />" class="w3-button">Ajouter</a>
+        <table id="countriesTable" class="w3-centered w3-table-all">
+            <thead>
+            <tr class="w3-light-grey">
+                <th>Id</th>
+                <th>Country</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach items="${countries}" var="elem">
+                <tr>
+                    <th scope="row">${elem.id}</th>
+                    <td>${elem.country}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 <!-- JavaScript resources dataTables + jQuery -->
