@@ -3,6 +3,7 @@ package com.hitema.jee.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "city")
@@ -18,11 +19,13 @@ public class City {
     @JoinColumn(name = "country_id")
     private Country country;
 
-
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
     private Boolean capital;
+
+    @OneToMany(mappedBy = "city")
+    private List<Picture> pictures;
 
     public Long getId() {
         return id;
@@ -64,6 +67,14 @@ public class City {
         this.capital = capital;
     }
 
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("City{");
@@ -71,6 +82,8 @@ public class City {
         sb.append(", city='").append(city).append('\'');
         sb.append(", country=").append(country);
         sb.append(", lastUpdate=").append(lastUpdate);
+        sb.append(", capital=").append(capital);
+        sb.append(", pictures=").append(pictures);
         sb.append('}');
         return sb.toString();
     }

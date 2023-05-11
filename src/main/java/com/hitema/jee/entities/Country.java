@@ -19,9 +19,6 @@ public class Country {
     @OneToMany(mappedBy = "country")
     private List<City> cities ;
 
-    public Country() {
-    }
-
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
     public Long getId() {
@@ -60,7 +57,6 @@ public class Country {
         final StringBuffer sb = new StringBuffer("Country{");
         sb.append("id=").append(id);
         sb.append(", country='").append(country).append('\'');
-        sb.append(", cities=[...]");
         sb.append(", lastUpdate=").append(lastUpdate);
         sb.append('}');
         return sb.toString();

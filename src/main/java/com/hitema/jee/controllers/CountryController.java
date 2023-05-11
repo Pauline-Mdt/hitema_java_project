@@ -39,23 +39,39 @@ public class CountryController {
         return new ModelAndView("countries", "countries", countries);
     }
 
-    @GetMapping("/countries/new")
-    public ModelAndView newCountry() {
-        return new ModelAndView("newCountry");
+    @GetMapping("/countryModify")
+    public ModelAndView getCountryModify() {
+        log.trace("Appel getCountryModify Country");
+        Country country = new Country();
+        country.setLastUpdate(LocalDateTime.now());
+        return new ModelAndView("countryModify","country",country);
     }
 
-    @PostMapping("/countries")
-    public ModelAndView createCountry(@ModelAttribute("countryForm") Country country, BindingResult result, ModelMap model) {
-        log.trace("{}", country);
-        log.trace("resultats: {}", result);
-        log.trace("{}", model);
-
+    @PostMapping ("/countryModify")
+    public ModelAndView countryModify(@ModelAttribute("countryForm") Country country, ModelMap model) {
+        log.trace("Appel countryModify : {} ", country);
         country.setLastUpdate(LocalDateTime.now());
         service.create(country);
-
-        log.trace(country);
-
-        List<Country> countries = this.service.readAll();
-        return new ModelAndView("countries", "countries", countries);
+        return new ModelAndView("countryModify","country",country);
     }
+
+//    @GetMapping("/countries/new")
+//    public ModelAndView newCountry() {
+//        return new ModelAndView("newCountry");
+//    }
+//
+//    @PostMapping("/countries")
+//    public ModelAndView createCountry(@ModelAttribute("countryForm") Country country, BindingResult result, ModelMap model) {
+//        log.trace("countryForm : {}", country);
+//        log.trace("result : {}", result);
+//        log.trace("model : {}", model);
+//
+//        country.setLastUpdate(LocalDateTime.now());
+//        service.create(country);
+//
+//        log.trace(country);
+//
+//        List<Country> countries = this.service.readAll();
+//        return new ModelAndView("countries", "countries", countries);
+//    }
 }

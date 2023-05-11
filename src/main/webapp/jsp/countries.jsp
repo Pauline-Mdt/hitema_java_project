@@ -23,22 +23,21 @@
 </head>
 
 <body onload="init();">
-
-<%--<jsp:include page="header.jsp"></jsp:include>--%>
+<%@ include file="parts/header.jsp" %>
 
 <div class="w3-container">
-    <h2 style="text-align: center">Sakila - countries</h2>
+    <h2 style="text-align: center"><spring:message code="application.country.plural"/></h2>
     <br>
-    <a href="<c:url value="/" />" class="w3-button">Retour</a>
-    <a href="<c:url value="/cities" />" class="w3-button">Villes</a>
+    <a href="<c:url value="/" />" class="w3-button"><spring:message code="application.button.return"/></a>
+    <a href="<c:url value="/cities" />" class="w3-button"><spring:message code="application.city.plural"/></a>
 
     <div class="w3-container w3-center">
-        <a href="<c:url value="/countries/new" />" class="w3-button">Ajouter</a>
+        <a href="<c:url value="/countryModify" />" class="w3-button"><spring:message code="application.button.new"/></a>
         <table id="countriesTable" class="w3-centered w3-table-all">
             <thead>
             <tr class="w3-light-grey">
                 <th>Id</th>
-                <th>Country</th>
+                <th><spring:message code="application.country.singular"/></th>
             </tr>
             </thead>
             <tbody>

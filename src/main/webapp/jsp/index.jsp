@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: pauline
@@ -8,11 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Index</title>
+    <title><spring:message code="application.title.home"/> - <spring:message code="application.title.name"/></title>
 </head>
 <body>
-<h1 style="text-align: center; color: chartreuse">Welcome to Sakila</h1>
-<a href="countries">Pays</a>
-<a href="cities">Villes</a>
+<%@ include file="parts/header.jsp" %>
+
+<a href="countries"><spring:message code="application.country.plural"/></a>
+<a href="cities"><spring:message code="application.city.plural"/></a>
 </body>
 </html>

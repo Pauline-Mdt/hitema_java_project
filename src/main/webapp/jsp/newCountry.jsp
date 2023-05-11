@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: pauline
@@ -11,19 +12,20 @@
     <title>Add country</title>
 </head>
 <body>
+<%@ include file="parts/header.jsp" %>
+
 <form name="countryForm" action="/jee-mvc/countries" method="POST">
-    <h2 style="text-align: center">Sakila - nouveau pays</h2>
+    <h2 style="text-align: center"><spring:message code="application.title.name"/> - <spring:message code="application.country.new"/></h2>
     <br>
 
     <table>
         <tr>
-            <td>Country name :</td>
+            <td><spring:message code="application.country.name"/> :</td>
             <td><input type="text" name="country"/></td>
         </tr>
-        <th><input type="submit" value="Submit" name="find"/></th>
-        <th><input type="reset" value="Reset" name="reset" /></th>
+        <th><input type="submit" value="<spring:message code="application.button.submit"/>" name="find"/></th>
+        <th><input type="reset" value="<spring:message code="application.button.reset"/>" name="reset" /></th>
     </table>
-    <h2>${bmi}</h2>
 </form>
 </body>
 </html>
