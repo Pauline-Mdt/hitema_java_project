@@ -33,7 +33,7 @@
                 <td><spring:message code="application.city.name"/> :</td>
                 <td><input type="text" name="city" value="${city.city}"/></td>
                 <td>Photo :</td>
-                <td><input type="file" name="picture"/></td>
+                <td><input type="file" accept="image/*" name="picture"/></td>
             </tr>
             <th><input type="submit" value="Submit"/></th>
             <th><input type="reset" value="Clear"/></th>
