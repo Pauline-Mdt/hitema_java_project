@@ -50,7 +50,8 @@ public class CityController {
     @GetMapping("/city")
     public ModelAndView getCities(@RequestParam Long id) {
         City city = cityService.read(id);
-        log.trace("city : {}", cityService.read(id));
+        log.trace("city : {}", city);
+        log.trace("pictures : {}", city.getPictures());
         return new ModelAndView("city", "city", city);
     }
 
@@ -85,7 +86,7 @@ public class CityController {
                 newPicture.setName(picture.getOriginalFilename());
                 newPicture.setType(picture.getContentType());
                 newPicture.setSize(String.valueOf(picture.getSize()));
-                newPicture.setFile(Arrays.toString(picture.getBytes()));
+                newPicture.setFile(picture.getBytes());
                 newPicture.setCity(city);
                 newPicture.setLastUpdate(LocalDateTime.now());
 

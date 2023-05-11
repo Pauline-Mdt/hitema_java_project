@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pauline
@@ -24,7 +24,6 @@
 <a href="<c:url value="/cities" />" class="w3-button"><spring:message code="application.button.return"/></a>
 
 <div class="w3-container w3-center">
-    <a href="<c:url value="/cityModify" />" class="w3-button"><spring:message code="application.button.new"/></a>
     <table id="citiesTable" class="w3-centered w3-table-all">
         <tbody>
             <tr>
@@ -47,9 +46,8 @@
     </table>
     <br>
     <c:forEach items="${city.pictures}" var="elem">
-        <img src="<c:url value="data:${elem.type};base64, ${elem.file}" />" alt="${elem.name}"/>
+        <img src="<c:url value="data:${elem.type};base64,${elem.file}" />" alt="${elem.name}" height="250" width="auto"/>
     </c:forEach>
-
 </div>
 </div>
 

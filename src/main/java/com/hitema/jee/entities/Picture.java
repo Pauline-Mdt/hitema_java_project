@@ -2,7 +2,6 @@ package com.hitema.jee.entities;
 
 import jakarta.persistence.*;
 
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Base64;
 
@@ -20,7 +19,7 @@ public class Picture {
 
     private String size;
 
-    private String file;
+    private byte[] file;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
@@ -61,12 +60,11 @@ public class Picture {
         this.size = size;
     }
 
-    public byte[] getFile() {
-        byte[] bytes = this.file.getBytes(StandardCharsets.UTF_8);
-        return Base64.getEncoder().encodeToString(bytes).getBytes();
+    public String getFile() {
+        return Base64.getEncoder().encodeToString(this.file);
     }
 
-    public void setFile(String file) {
+    public void setFile(byte[] file) {
         this.file = file;
     }
 
